@@ -10,7 +10,7 @@ import copy
 def first_move():
     # Function to randomly select player who will make a first move
     first_mover = random.randrange(1, 3)
-    print(f"First move should be made by Player", first_mover)
+    print(f"First move should be made by Player {first_mover}", first_mover)
     return first_mover
 
 
@@ -39,7 +39,7 @@ def info():
     print(
         """
 ===================================================================================
-The index map keys that user can select to place X or O are looking like this: 
+The index map keys that user can select to place X or O are looking like this:
 -------
 1|2|3
 4|5|6
@@ -74,11 +74,11 @@ def validate_userinput():
     # Ask user for input and validate that it is number from 1 to 9
     position = "WRONG"
     allowed_range = range(0, 10)
-    while position.isdigit() == False:
+    while position.isdigit() is False:
         position = input(
             """ Please select field position(should be a number from 1 to 9, or press 'q' to quit game): """
         )
-        if position.isdigit() == False:
+        if position.isdigit() is False:
             if position == "q":
                 print_line()
                 print("You pressed 'q', exiting game...")
@@ -89,7 +89,7 @@ def validate_userinput():
             userinput = position
             position = "STILL WRONG"
             print(
-                f"Your number should be in range of 1 to 9, you've entered ", userinput
+                f"Your number should be in range of 1 to 9, you've entered {userinput} ", userinput
             )
     return int(position)
 
@@ -150,7 +150,7 @@ def position_update(row: list, position: int, symbol: list):
             globals()["next_move"] = False
     else:
         globals()["game_msg"] = "Incorrect position"
-        print(f"Incorrect position")
+        print("Incorrect position")
     return updated_row
 
 
@@ -253,12 +253,12 @@ def show_gamefield(board: dict, who_moves: int):
     # print(f'Game message:', globals()["game_msg"] )
     if game_msg != "":
         print(game_msg)
-    print(f"Current situation is:")
-    print(f"======================")
+    print("Current situation is:")
+    print("======================")
     for key, value in board.items():
         print(value)
-    print(f"Player that moves now is:", who_moves)
-    print(f"======================")
+    print("Player that moves now is:", who_moves)
+    print("======================")
 
 
 def next_move_check():
