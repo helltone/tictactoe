@@ -35,7 +35,7 @@ def print_line():
 
 
 def info():
-    # Function to print information about how you should select where to place your symbol
+    # Function to print information about how you should select where to place your symbol # noqa: E501
     print(
         """
 ===================================================================================
@@ -76,7 +76,9 @@ def validate_userinput():
     allowed_range = range(0, 10)
     while position.isdigit() is False:
         position = input(
-            """ Please select field position(should be a number from 1 to 9, or press 'q' to quit game): """
+            """
+                Please select field position(should be a number from 1 to 9, or press 'q' to quit game):
+            """  # noqa: E501
         )
         if position.isdigit() is False:
             if position == "q":
@@ -89,13 +91,13 @@ def validate_userinput():
             userinput = position
             position = "STILL WRONG"
             print(
-                f"Your number should be in range of 1 to 9, you've entered {userinput} ", userinput
+                f"Your number should be in range of 1 to 9, you've entered {userinput} ", userinput  # noqa: E501
             )
     return int(position)
 
 
 def row_switcher(position: int):
-    # Function to select correct row to update, based on position passed into it
+    # Function to select correct row to update, based on position passed into it # noqa: E501
     row_to_update = {}
     if position >= 1 and position <= 3:
         row_to_update[1] = board[1]
@@ -114,15 +116,15 @@ def check_occupied(row_element: list):
 
 
 def position_update(row: list, position: int, symbol: list):
-    # Updates position in the list var:row according to int var:position passed into
-    # returns the new row with var:symbol set in var:position according to tic tac toe board map
+    # Updates position in the list var:row according to int var:position passed into # noqa: E501
+    # returns the new row with var:symbol set in var:position according to tic tac toe board map # noqa: E501
     first_cell = [1, 4, 7]
     second_cell = [2, 5, 8]
     third_cell = [3, 6, 9]
     updated_row = copy.deepcopy(row)
     if position in first_cell:
-        # we are checking index - 1/5/9 because all "real" game symbols in first_cell (first column really)
-        # have index 1, _x_|__|__ example of how "row" variable value looks like inside, so x here have index of 1.
+        # we are checking index - 1/5/9 because all "real" game symbols in first_cell (first column really) # noqa: E501
+        # have index 1, _x_|__|__ example of how "row" variable value looks like inside, so x here have index of 1.# noqa: E501
         if check_occupied(updated_row[1]):
             updated_row[1] = symbol
             globals()["next_move"] = True
@@ -131,8 +133,8 @@ def position_update(row: list, position: int, symbol: list):
             globals()["next_move"] = False
             # print(f'Position is occupied, check another one')
     elif position in second_cell:
-        # we are checking index - 1/5/9 because all "real" game symbols in first_cell (first column really)
-        # have index 1, _x_|__|__ example of how "row" variable value looks like inside, so x here have index of 1.
+        # we are checking index - 1/5/9 because all "real" game symbols in first_cell (first column really) # noqa: E501
+        # have index 1, _x_|__|__ example of how "row" variable value looks like inside, so x here have index of 1. # noqa: E501
         if check_occupied(updated_row[5]):
             updated_row[5] = symbol
             globals()["next_move"] = True
@@ -140,8 +142,8 @@ def position_update(row: list, position: int, symbol: list):
             globals()["game_msg"] = "Position is occupied, check another one"
             globals()["next_move"] = False
     elif position in third_cell:
-        # we are checking index - 1 because all "real" game symbols in first_cell (first column really)
-        # have index 1, _x_|__|__ example of how "row" variable value looks like inside, so x here have index of 1.
+        # we are checking index - 1 because all "real" game symbols in first_cell (first column really) # noqa: E501
+        # have index 1, _x_|__|__ example of how "row" variable value looks like inside, so x here have index of 1. # noqa: E501
         if check_occupied(updated_row[9]):
             updated_row[9] = symbol
             globals()["next_move"] = True
@@ -155,7 +157,7 @@ def position_update(row: list, position: int, symbol: list):
 
 
 def row_update(position: int, symbol: list):
-    # Function to update row of the filed with a user input position and user's symbol (X/0)
+    # Function to update row of the filed with a user input position and user's symbol (X/0) # noqa: E501
     for key, value in row_switcher(position).items():
         row_to_update = key
         row = value
@@ -172,8 +174,8 @@ def check_win():
     for key in row_with_symbol:
         arr_row = []
 
-        # Copy row that we are checking, substitute all empty positions where we are potentially can place X or 0 symbols with "Z",
-        # so later in step with .translate() it will not be substituted with None, and we will preserve correct empty positions index.
+        # Copy row that we are checking, substitute all empty positions where we are potentially can place X or 0 symbols with "Z", # noqa: E501
+        # so later in step with .translate() it will not be substituted with None, and we will preserve correct empty positions index. # noqa: E501
         row_copy_list = list(copy.deepcopy(board[key]))
         index_with_symbol = [1, 5, 9]
 
